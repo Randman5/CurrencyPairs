@@ -7,13 +7,13 @@ import 'package:flutter/cupertino.dart';
 class GetCurrencyList {
   void run(
       State<StatefulWidget> widget, List<CurrencyPairSelect> currencyList) {
-    getAllPairsWithSelected().then((value) => widget.setState(() {
+    _getAllPairsWithSelected().then((value) => widget.setState(() {
           currencyList.clear();
           currencyList.addAll(value);
         }));
   }
 
-  Future<List<CurrencyPairSelect>> getAllPairsWithSelected() async {
+  Future<List<CurrencyPairSelect>> _getAllPairsWithSelected() async {
     List<CurrencyPairSelect> saved =
         await CurrencyInRepository().getCurrencyList();
     List<CurrencyPairSelect> getOut =

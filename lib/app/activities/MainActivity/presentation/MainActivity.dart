@@ -1,5 +1,6 @@
 
 import 'dart:async';
+import 'package:currency_pairs/app/activities/MainActivity/domain/usecase/DismissToRight.dart';
 import 'package:currency_pairs/app/activities/MainActivity/domain/usecase/GetCurrencyRate.dart';
 import 'package:currency_pairs/app/activities/MainActivity/domain/usecase/NavigateToCurrencyActivity.dart';
 import 'package:currency_pairs/app/activities/MainActivity/domain/models/CurrencyPairRate.dart';
@@ -16,7 +17,7 @@ class MainActivity extends StatefulWidget {
 }
 
 class _MainActivityState extends State<MainActivity> {
-  List<CurrencyPairRate> CurrencyList = [];
+  List<CurrencyPairRate> currencyList = [];
 
   @override
   void initState() {
@@ -26,7 +27,7 @@ class _MainActivityState extends State<MainActivity> {
   }
 
   void updateTrackedList() {
-    GetTrackedCurrencyRate().run(this, CurrencyList);
+    GetTrackedCurrencyRate().run(this, currencyList);
   }
 
   void timerUpdate() {
@@ -61,11 +62,11 @@ class _MainActivityState extends State<MainActivity> {
           color: Colors.white,
           child: RefreshIndicator(
               onRefresh: () async =>
-                  GetTrackedCurrencyRate().run(this, CurrencyList),
+                  GetTrackedCurrencyRate().run(this, currencyList),
               child: ListView.separated(
-                  itemCount: CurrencyList.length,
+                  itemCount: currencyList.length,
                   itemBuilder: (context, index) {
-                    CurrencyPairRate item = CurrencyList[index];
+                    CurrencyPairRate item = currencyList[index];
                     return Dismissible(
                       key: Key(item.key),
                       child: CurrencyValueView(
@@ -78,7 +79,8 @@ class _MainActivityState extends State<MainActivity> {
                       onDismissed: (direction) {
                         if (direction == DismissDirection.startToEnd) {
                           setState(() {
-                            CurrencyList.removeAt(index);
+                            currencyList.removeAt(index);
+                            DismissToRight().run(currencyList);
                           });
                         }
                       },
