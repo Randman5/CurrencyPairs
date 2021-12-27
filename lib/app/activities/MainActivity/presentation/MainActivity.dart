@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'package:currency_pairs/app/activities/MainActivity/domain/usecase/DismissToRight.dart';
 import 'package:currency_pairs/app/activities/MainActivity/domain/usecase/GetCurrencyRate.dart';
@@ -61,6 +60,7 @@ class _MainActivityState extends State<MainActivity> {
         body: Container(
           color: Colors.white,
           child: RefreshIndicator(
+              color: Colors.grey,
               onRefresh: () async =>
                   GetTrackedCurrencyRate().run(this, currencyList),
               child: ListView.separated(
@@ -89,6 +89,7 @@ class _MainActivityState extends State<MainActivity> {
                   separatorBuilder: (context, index) {
                     return const Divider(
                       height: 2.0,
+                      color: Colors.grey,
                     );
                   })),
         ));

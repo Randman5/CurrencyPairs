@@ -66,6 +66,7 @@ class _AddCurrencyActivityState extends State<AddCurrencyActivity> {
                 separatorBuilder: (context, index) {
                   return const Divider(
                     height: 2.0,
+                    color: Colors.grey,
                   );
                 })));
   }

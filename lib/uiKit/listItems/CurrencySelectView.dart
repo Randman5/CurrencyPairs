@@ -45,7 +45,7 @@ class _CurrencyValueSelectViewState extends State<CurrencySelectView> {
                 ),
               ),
               Container(
-                  margin: const EdgeInsets.fromLTRB(0, 30, 20, 30),
+                  margin: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                   child: Checkbox(
                       value: widget.currencyPair.isSelected,
                       checkColor: Colors.black,
